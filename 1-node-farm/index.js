@@ -31,9 +31,8 @@ const url = require("url");
 //////////////////////////////////////////////////////
 ///////////  SERVER
 
-const response = {
-  error: "page not found",
-};
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
+const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
   const pathName = req.url;
@@ -41,6 +40,11 @@ const server = http.createServer((req, res) => {
     res.end("<h1>This is the overview page</h1>");
   } else if (pathName === "/product") {
     res.end("<h1>This is the product page</h1>");
+  } else if (pathName === "/api") {
+    res.writeHead(200, {
+      "Content-type": "application/json",
+    });
+    res.end(data);
   } else {
     res.writeHead(404, {
       "Content-type": "text/html",
@@ -49,7 +53,7 @@ const server = http.createServer((req, res) => {
     res.end("<h1>Page not found</h1>");
     // res.end("{error: page not found}");
   }
-  // console.log(pathName);
+  console.log(pathName);
   // res.end("Hello from the server!");
 });
 
