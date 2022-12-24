@@ -9,6 +9,7 @@
   "author": "Abdurakhmon Otajonov",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
