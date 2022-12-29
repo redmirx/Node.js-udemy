@@ -35,6 +35,7 @@ const replaceTemplate = require('./modules/replaceTemplate');
 ///////////  SERVER
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+
 const dataObj = JSON.parse(data);
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
