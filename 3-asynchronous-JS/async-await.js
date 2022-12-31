@@ -4,7 +4,7 @@ const superagent = require('superagent');
 const readFilePro = (file) => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf-8', (err, data) => {
-      if (err) reject('I could no find that file 😕');
+      if (err) reject('I could not find that file 😕');
       resolve(data);
     });
   });
@@ -31,7 +31,18 @@ const getDogPic = async () => {
     console.log(file);
   } catch (err) {
     console.log(err);
+    throw err;
   }
+  return '2: Ready 🐶';
 };
 
-getDogPic();
+(async () => {
+  try {
+    console.log('1: Will get dogs pics!');
+    const x = await getDogPic();
+    console.log(x);
+    console.log('2: Done getting dog pics!');
+  } catch (err) {
+    console.log('Error 💥');
+  }
+})();
