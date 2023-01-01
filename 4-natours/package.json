@@ -1,0 +1,14 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Learning node.js, express and mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Abdurakhmon",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
