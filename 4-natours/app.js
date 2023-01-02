@@ -17,10 +17,22 @@ const tours = JSON.parse(
 // });
 
 // Natours api methods
+// Get
 app.get('/api/v1/tours', (req, res) => {
   res.status(200).json({ status: 'success', results: tours.length, tours });
 });
 
+app.get('/api/v1/tours/:id', (req, res) => {
+  console.log(req.params);
+  const id = Number(req.params.id);
+  const tour = tours.find((el) => el.id === id);
+  if (!tour) {
+    return res.status(404).json({ status: 'fail', message: 'Invalid ID' });
+  }
+  res.status(200).json({ status: 'success', data: { tour } });
+});
+
+// Post
 app.post('/api/v1/tours', (req, res) => {
   const newId = tours.at(tours.length - 1).id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
@@ -37,6 +49,16 @@ app.post('/api/v1/tours', (req, res) => {
       });
     }
   );
+});
+
+// Patch
+
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (+req.params.id > tours.length)
+    return res.status(404).json({ status: 'fail', message: 'Invalid ID' });
+  res
+    .status(200)
+    .json({ status: 'success', message: '<Here is an updating tour...>' });
 });
 
 app.listen(port, () => {
